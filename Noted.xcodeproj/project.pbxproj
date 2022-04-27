@@ -14,7 +14,7 @@
 		8559C1B5281720C100AB7DE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8559C1B3281720C100AB7DE6 /* Main.storyboard */; };
 		8559C1B7281720C300AB7DE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8559C1B6281720C300AB7DE6 /* Assets.xcassets */; };
 		8559C1BA281720C300AB7DE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8559C1B8281720C300AB7DE6 /* LaunchScreen.storyboard */; };
-		8559C1C2281721A200AB7DE6 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C1C1281721A200AB7DE6 /* TableViewCell.swift */; };
+		8559C1C2281721A200AB7DE6 /* UploadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C1C1281721A200AB7DE6 /* UploadTableViewCell.swift */; };
 		8559C1C42817264E00AB7DE6 /* ConversionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C1C32817264E00AB7DE6 /* ConversionViewController.swift */; };
 		8559C2082817594200AB7DE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8559C2072817594200AB7DE6 /* GoogleService-Info.plist */; };
 		8559C20A2817757D00AB7DE6 /* UIViewController+alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C2092817757D00AB7DE6 /* UIViewController+alert.swift */; };
@@ -37,7 +37,7 @@
 		8559C1B6281720C300AB7DE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8559C1B9281720C300AB7DE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8559C1BB281720C300AB7DE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8559C1C1281721A200AB7DE6 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		8559C1C1281721A200AB7DE6 /* UploadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTableViewCell.swift; sourceTree = "<group>"; };
 		8559C1C32817264E00AB7DE6 /* ConversionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionViewController.swift; sourceTree = "<group>"; };
 		8559C2072817594200AB7DE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8559C2092817757D00AB7DE6 /* UIViewController+alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+alert.swift"; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 				8559C21A2819CC8A00AB7DE6 /* LoginViewController.swift */,
 				8559C1B1281720C100AB7DE6 /* ListViewController.swift */,
 				8559C1C32817264E00AB7DE6 /* ConversionViewController.swift */,
-				8559C1C1281721A200AB7DE6 /* TableViewCell.swift */,
+				8559C1C1281721A200AB7DE6 /* UploadTableViewCell.swift */,
 				8559C2092817757D00AB7DE6 /* UIViewController+alert.swift */,
 				8559C1B3281720C100AB7DE6 /* Main.storyboard */,
 				8559C1B6281720C300AB7DE6 /* Assets.xcassets */,
@@ -264,7 +264,7 @@
 				8559C2192819BD9D00AB7DE6 /* Upload.swift in Sources */,
 				8559C1B2281720C100AB7DE6 /* ListViewController.swift in Sources */,
 				8559C1C42817264E00AB7DE6 /* ConversionViewController.swift in Sources */,
-				8559C1C2281721A200AB7DE6 /* TableViewCell.swift in Sources */,
+				8559C1C2281721A200AB7DE6 /* UploadTableViewCell.swift in Sources */,
 				8559C21D2819CD7F00AB7DE6 /* NotedUser.swift in Sources */,
 				8559C21B2819CC8A00AB7DE6 /* LoginViewController.swift in Sources */,
 				8559C2212819ED3E00AB7DE6 /* Photo.swift in Sources */,

@@ -13,15 +13,15 @@ import GoogleSignIn
 class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var textFileNames = ["file1", "file2", "file3", "file4", "file5"]
     var imagePickerController = UIImagePickerController()
     var upload: Upload!
+    var uploads: Uploads!
     var photo: Photo!
     var photos: Photos!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        uploads = Uploads()
         tableView.delegate = self
         tableView.dataSource = self
         imagePickerController.delegate = self
@@ -31,13 +31,31 @@ class ListViewController: UIViewController {
         photos = Photos()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddImage" {
-            let navigationController = segue.destination as! UINavigationController
-            let destination = navigationController.viewControllers.first as! ConversionViewController
-            destination.photo = photo
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setToolbarHidden(false, animated: true)
+        uploads.loadData {
+            self.tableView.reloadData()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier ?? "" {
+        case "AddImage":
+            let navigationController = segue.destination as! UINavigationController
+            let destination = navigationController.viewControllers.first as! ConversionViewController
+            destination.photo = self.photo
+        case "ShowImageAndText":
+            let destination = segue.destination as! ConversionViewController
+            let selectedIndexPath = tableView.indexPathForSelectedRow!
+            destination.upload = uploads.uploadArray[selectedIndexPath.row]
+        default:
+            print("Could not find a segue for that identifier")
+        }
+    }
+    
+    
+    
     
     func cameraOrLibraryAlert() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -67,12 +85,12 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return textFileNames.count
+        return uploads.uploadArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = textFileNames[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! UploadTableViewCell
+        cell.upload = uploads.uploadArray[indexPath.row]
         return cell
     }
 }

@@ -30,10 +30,16 @@ class ConversionViewController: UIViewController {
         if photo == nil {
             photo = Photo()
         }
+        updateUserInterface()
+    }
+    
+    func updateUserInterface() {
+        fileNameTextField.text = upload.titleOrDescription
         imageView.image = photo.image
     }
     
     func updateFromUserInterface() {
+        upload.titleOrDescription = fileNameTextField.text ?? ""
         photo.image = imageView.image!
     }
     

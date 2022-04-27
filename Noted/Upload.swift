@@ -17,7 +17,7 @@ class Upload {
     
     var dictionary: [String: Any] {
         let timeIntervalDate = date.timeIntervalSince1970
-        return ["description": titleOrDescription, "postingUserID": postingUserID, "date": timeIntervalDate]
+        return ["titleOrDescription": titleOrDescription, "postingUserID": postingUserID, "date": timeIntervalDate]
     }
     
     init(titleOrDescription: String, postingUserID: String, date: Date, documentID: String) {
