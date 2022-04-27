@@ -85,12 +85,12 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="WzU-ED-rMV">
                             <connections>
                                 <action selector="addBarButtonPressed:" destination="BYZ-38-t0r" id="zSQ-E1-sYw"/>
-                                <segue destination="fO7-wS-pMf" kind="presentation" identifier="AddImage" id="TSF-Hf-cEJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="b00-6N-gnv" id="FZm-4V-2gX"/>
+                        <segue destination="fO7-wS-pMf" kind="presentation" identifier="AddImage" id="Mlh-xN-7zS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

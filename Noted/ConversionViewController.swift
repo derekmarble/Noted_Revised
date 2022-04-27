@@ -17,6 +17,7 @@ class ConversionViewController: UIViewController {
     @IBOutlet weak var recognizedTextView: UITextView!
     
     var upload: Upload!
+    var photo: Photo!
     
 
     override func viewDidLoad() {
@@ -25,9 +26,16 @@ class ConversionViewController: UIViewController {
         if upload == nil {
             upload = Upload()
         }
+        
+        if photo == nil {
+            photo = Photo()
+        }
+        imageView.image = photo.image
     }
     
-    
+    func updateFromUserInterface() {
+        photo.image = imageView.image!
+    }
     
     func leaveViewController() {
         let isPresentingInAddMode = presentingViewController is UINavigationController
@@ -41,6 +49,7 @@ class ConversionViewController: UIViewController {
         leaveViewController()
     }
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        updateFromUserInterface()
         upload.saveData { (success) in
             if success {
                 self.leaveViewController()

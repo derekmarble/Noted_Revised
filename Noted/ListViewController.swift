@@ -17,15 +17,26 @@ class ListViewController: UIViewController {
     var imagePickerController = UIImagePickerController()
     var upload: Upload!
     var photo: Photo!
+    var photos: Photos!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         tableView.delegate = self
         tableView.dataSource = self
         imagePickerController.delegate = self
+        if upload == nil {
+            upload = Upload()
+        }
+        photos = Photos()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddImage" {
+            let navigationController = segue.destination as! UINavigationController
+            let destination = navigationController.viewControllers.first as! ConversionViewController
+            destination.photo = photo
+        }
     }
     
     func cameraOrLibraryAlert() {
@@ -46,7 +57,7 @@ class ListViewController: UIViewController {
     }
 
     @IBAction func addBarButtonPressed(_ sender: UIBarButtonItem) {
-        
+        cameraOrLibraryAlert()
     }
     @IBAction func signOutPressed(_ sender: UIBarButtonItem) {
     }
@@ -68,6 +79,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ListViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        photo = Photo()
         
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             photo.image = editedImage

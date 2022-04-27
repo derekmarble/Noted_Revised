@@ -32,5 +32,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Noted will need access to your camera if you&apos;d like to add a photo.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Noted will need access to your photo library if you&apos;d like to add a photo.</string>
 </dict>
 </plist>
