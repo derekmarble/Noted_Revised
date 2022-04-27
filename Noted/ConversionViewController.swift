@@ -16,9 +16,15 @@ class ConversionViewController: UIViewController {
     
     @IBOutlet weak var recognizedTextView: UITextView!
     
+    var upload: Upload!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if upload == nil {
+            upload = Upload()
+        }
     }
     
     
@@ -33,6 +39,15 @@ class ConversionViewController: UIViewController {
     }
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         leaveViewController()
+    }
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        upload.saveData { (success) in
+            if success {
+                self.leaveViewController()
+            } else {
+                self.oneButtonAlert(title: "Save Failed", message: "For some reason, the data would not save to the cloud.")
+            }
+        }
     }
     
 

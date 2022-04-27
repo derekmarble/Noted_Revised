@@ -6,16 +6,23 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuthUI
+import GoogleSignIn
 
 class ListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var textFileNames = ["file1", "file2", "file3", "file4", "file5"]
     var imagePickerController = UIImagePickerController()
+    var upload: Upload!
     var photo: Photo!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         tableView.delegate = self
         tableView.dataSource = self
         imagePickerController.delegate = self
@@ -41,9 +48,9 @@ class ListViewController: UIViewController {
     @IBAction func addBarButtonPressed(_ sender: UIBarButtonItem) {
         
     }
-    @IBAction func testButtonPressed(_ sender: UIBarButtonItem) {
-        cameraOrLibraryAlert()
+    @IBAction func signOutPressed(_ sender: UIBarButtonItem) {
     }
+    
     
 }
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {

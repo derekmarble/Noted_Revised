@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YYI-D7-0WA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qB1-4u-eaS">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -70,11 +70,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dzb-JS-Wj0">
-                        <barButtonItem key="leftBarButtonItem" title="Test" id="w3T-4B-wWr">
-                            <connections>
-                                <action selector="testButtonPressed:" destination="BYZ-38-t0r" id="RP9-Y8-2EG"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem id="w3T-4B-wWr">
+                                <connections>
+                                    <action selector="testButtonPressed:" destination="BYZ-38-t0r" id="RP9-Y8-2EG"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Sign Out" id="Pln-Yd-nun">
+                                <connections>
+                                    <segue destination="RVn-rY-IQf" kind="unwind" identifier="SignOutUnwind" unwindAction="unwindSignOutPressedWithSegue:" id="Qjx-Yt-gau"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="WzU-ED-rMV">
                             <connections>
                                 <action selector="addBarButtonPressed:" destination="BYZ-38-t0r" id="zSQ-E1-sYw"/>
@@ -87,8 +94,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="RVn-rY-IQf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="937.68115942028987" y="84.375"/>
+            <point key="canvasLocation" x="1847.826086956522" y="84.375"/>
         </scene>
         <!--Conversion View Controller-->
         <scene sceneID="eF5-Lx-6h9">
@@ -150,7 +158,11 @@
                                 <action selector="cancelButtonPressed:" destination="kyl-xM-fF4" id="3Xb-0C-Hbb"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="3VT-wq-zb3"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="3VT-wq-zb3">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="kyl-xM-fF4" id="YOD-9l-5ti"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="fileNameTextField" destination="0KB-IF-yBs" id="aEW-Rs-xAQ"/>
@@ -160,25 +172,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PGJ-ge-8uW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2816.25" y="90.845070422535215"/>
+            <point key="canvasLocation" x="3726.0869565217395" y="90.401785714285708"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="NQw-05-csS">
+        <!--Login View Controller-->
+        <scene sceneID="bJF-dQ-OdO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YYI-D7-0WA" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sam-w1-2vB">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController id="T9S-gD-qZq" customClass="LoginViewController" customModule="Noted" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4fR-DM-SNI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="WDB-W3-NxK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YYJ-ks-PQT"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="CGq-xK-Gcf"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="FirstShowSegue" id="1QY-k1-eiw"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oiF-Sh-wYt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b5D-er-Ryo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="27.536231884057973" y="84.375"/>
+            <point key="canvasLocation" x="952.17391304347836" y="76.339285714285708"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BDK-ts-dvo">
@@ -196,7 +209,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EoU-WX-Wft" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1806" y="-287"/>
+            <point key="canvasLocation" x="2715.9420289855075" y="-287.27678571428572"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2RE-Dj-7PM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qB1-4u-eaS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bTm-lq-pdw">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="T9S-gD-qZq" kind="relationship" relationship="rootViewController" id="6fl-gK-ERb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cQj-Gh-hrI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="42.028985507246382" y="76.339285714285708"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
