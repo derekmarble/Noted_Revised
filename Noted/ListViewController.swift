@@ -49,7 +49,6 @@ class ListViewController: UIViewController {
             let destination = segue.destination as! ConversionViewController
             let selectedIndexPath = tableView.indexPathForSelectedRow!
             destination.upload = uploads.uploadArray[selectedIndexPath.row]
-            print(uploads.uploadArray.count)
         default:
             print("Could not find a segue for that identifier")
         }

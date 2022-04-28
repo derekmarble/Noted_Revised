@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import FirebaseStorage
 
 class Upload {
     var titleOrDescription: String
@@ -44,10 +45,11 @@ class Upload {
         let titleOrDescription = dictionary["titleOrDescription"] as! String? ?? ""
         let postingUserID = dictionary["postingUserID"] as! String? ?? ""
         let photoURL = dictionary["photoURL"] as! String? ?? ""
+        let photoID = dictionary["photoID"] as! String? ?? ""
         let extractedText = dictionary["extractedText"] as! String? ?? ""
         let timeIntervalDate = dictionary["date"] as! TimeInterval? ?? TimeInterval()
         let date = Date(timeIntervalSince1970: timeIntervalDate)
-        self.init(titleOrDescription: titleOrDescription, postingUserID: postingUserID, image: UIImage(), photoURL: photoURL, photoID: "", extractedText: extractedText, date: date, documentID: "")
+        self.init(titleOrDescription: titleOrDescription, postingUserID: postingUserID, image: UIImage(), photoURL: photoURL, photoID: photoID, extractedText: extractedText, date: date, documentID: "")
     }
     
     func saveData(completion: @escaping (Bool) -> ()) {
@@ -104,6 +106,7 @@ class Upload {
         
         //create a storage reference to upload this image file to the upload's folder
         let storageRef = storage.reference().child(self.documentID).child(photoID)
+        print("the storage reference for this saveData function is \(storageRef)")
         
         //create an upload task
         let uploadTask = storageRef.putData(photoData, metadata: uploadMetaData) { metaData, error in
@@ -151,11 +154,13 @@ class Upload {
     
     func loadImage(completion: @escaping () -> ()) {
         guard self.documentID != "" else {
-            print("Error: did not pass a valid spot into load image")
+            print("Error: did not pass a valid upload into load image")
             return
         }
+        print("The document id for this upload is \(self.documentID)")
+        print("The photo ID for this upload is \(self.photoID)")
         let storage = Storage.storage()
-        let storageRef = storage.reference().child(self.documentID).child(self.photoID)
+        let storageRef = storage.reference().child(photoID)
         storageRef.getData(maxSize: 25 * 1024 * 1024) { data, error in
             if let error = error {
                 print("Error: an error occured while reading from file ref: \(storageRef). \(error.localizedDescription)")

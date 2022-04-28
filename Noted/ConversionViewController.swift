@@ -25,13 +25,17 @@ class ConversionViewController: UIViewController {
         if upload == nil {
             upload = Upload()
         }
-        
+        upload.loadImage {
+            self.imageView.image = self.upload.image
+        }
         updateUserInterface()
     }
+
     
     func updateUserInterface() {
         fileNameTextField.text = upload.titleOrDescription
         imageView.image = upload.image
+
     }
     
     func updateFromUserInterface() {
@@ -66,7 +70,6 @@ class ConversionViewController: UIViewController {
                 self.oneButtonAlert(title: "Save Failed", message: "For some reason, the data would not save to the cloud.")
             }
         }
-            
         }
     }
     
