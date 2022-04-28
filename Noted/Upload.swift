@@ -21,7 +21,7 @@ class Upload {
     
     var dictionary: [String: Any] {
         let timeIntervalDate = date.timeIntervalSince1970
-        return ["titleOrDescription": titleOrDescription, "postingUserID": postingUserID, "image": image, "photoURL": photoURL, "photoID": photoID, "extractedText": extractedText, "date": timeIntervalDate]
+        return ["titleOrDescription": titleOrDescription, "postingUserID": postingUserID, "photoURL": photoURL, "photoID": photoID, "extractedText": extractedText, "date": timeIntervalDate]
     }
     
     init(titleOrDescription: String, postingUserID: String, image: UIImage, photoURL: String, photoID: String, extractedText: String, date: Date, documentID: String) {
@@ -44,11 +44,10 @@ class Upload {
         let titleOrDescription = dictionary["titleOrDescription"] as! String? ?? ""
         let postingUserID = dictionary["postingUserID"] as! String? ?? ""
         let photoURL = dictionary["photoURL"] as! String? ?? ""
-        let photoID = dictionary["photoID"] as! String? ?? ""
         let extractedText = dictionary["extractedText"] as! String? ?? ""
         let timeIntervalDate = dictionary["date"] as! TimeInterval? ?? TimeInterval()
         let date = Date(timeIntervalSince1970: timeIntervalDate)
-        self.init(titleOrDescription: titleOrDescription, postingUserID: postingUserID, image: UIImage(), photoURL: photoURL, photoID: photoID, extractedText: extractedText, date: date, documentID: "")
+        self.init(titleOrDescription: titleOrDescription, postingUserID: postingUserID, image: UIImage(), photoURL: photoURL, photoID: "", extractedText: extractedText, date: date, documentID: "")
     }
     
     func saveData(completion: @escaping (Bool) -> ()) {
@@ -86,7 +85,7 @@ class Upload {
             }
         }
     }
-    func saveImage( completion: @escaping (Bool) -> ()) {
+    func saveImage(completion: @escaping (Bool) -> ()) {
         let storage = Storage.storage()
         //convert upload.image to a Data Type so that it can be saved in Firebase Storage
         guard let photoData = self.image.jpegData(compressionQuality: 0.5) else {
@@ -104,7 +103,7 @@ class Upload {
         }
         
         //create a storage reference to upload this image file to the upload's folder
-        let storageRef = storage.reference().child(documentID).child(self.photoID)
+        let storageRef = storage.reference().child(self.documentID).child(photoID)
         
         //create an upload task
         let uploadTask = storageRef.putData(photoData, metadata: uploadMetaData) { metaData, error in
@@ -168,33 +167,33 @@ class Upload {
         }
         
     }
-    func deleteData(completion: @escaping(Bool) -> ()) {
-        let db = Firestore.firestore()
-        db.collection("uploads").document(self.documentID).delete { error in
-            if let error = error {
-                print("Error deleting photo document ID \(self.documentID). Error: \(error.localizedDescription)")
-                completion(false)
-            } else {
-                self.deleteImage()
-                print("Successfully deleted document \(self.documentID)")
-                    completion(true)
-            }
-        }
-    }
-    
-    private func deleteImage() {
-        guard self.documentID != "" else {
-            print("Error: did not pass a valid upload into deleteImage")
-            return
-        }
-        let storage = Storage.storage()
-        let storageRef = storage.reference().child(self.documentID).child(self.photoID)
-        storageRef.delete { error in
-            if let error = error {
-                print("Error: could not delete photo. \(error.localizedDescription)")
-            } else {
-                print("Photo successfully deleted")
-            }
-        }
-    }
+//    func deleteData(completion: @escaping(Bool) -> ()) {
+//        let db = Firestore.firestore()
+//        db.collection("uploads").document(self.documentID).delete { error in
+//            if let error = error {
+//                print("Error deleting photo document ID \(self.documentID). Error: \(error.localizedDescription)")
+//                completion(false)
+//            } else {
+//                self.deleteImage()
+//                print("Successfully deleted document \(self.documentID)")
+//                    completion(true)
+//            }
+//        }
+//    }
+//
+//    private func deleteImage() {
+//        guard self.documentID != "" else {
+//            print("Error: did not pass a valid upload into deleteImage")
+//            return
+//        }
+//        let storage = Storage.storage()
+//        let storageRef = storage.reference().child(self.documentID).child(self.photoID)
+//        storageRef.delete { error in
+//            if let error = error {
+//                print("Error: could not delete photo. \(error.localizedDescription)")
+//            } else {
+//                print("Photo successfully deleted")
+//            }
+//        }
+//    }
 }
