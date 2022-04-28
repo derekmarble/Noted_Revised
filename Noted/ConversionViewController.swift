@@ -17,7 +17,6 @@ class ConversionViewController: UIViewController {
     @IBOutlet weak var recognizedTextView: UITextView!
     
     var upload: Upload!
-    var photo: Photo!
     
 
     override func viewDidLoad() {
@@ -27,20 +26,17 @@ class ConversionViewController: UIViewController {
             upload = Upload()
         }
         
-        if photo == nil {
-            photo = Photo()
-        }
         updateUserInterface()
     }
     
     func updateUserInterface() {
         fileNameTextField.text = upload.titleOrDescription
-        imageView.image = photo.image
+        imageView.image = upload.image
     }
     
     func updateFromUserInterface() {
         upload.titleOrDescription = fileNameTextField.text ?? ""
-        photo.image = imageView.image!
+        upload.image = imageView.image!
     }
     
     func leaveViewController() {
@@ -58,10 +54,19 @@ class ConversionViewController: UIViewController {
         updateFromUserInterface()
         upload.saveData { (success) in
             if success {
+                return
+            } else {
+                self.oneButtonAlert(title: "Save Failed", message: "For some reason, the data would not save to the cloud.")
+            }
+        }
+        upload.saveImage { success in
+            if success {
                 self.leaveViewController()
             } else {
                 self.oneButtonAlert(title: "Save Failed", message: "For some reason, the data would not save to the cloud.")
             }
+        }
+            
         }
     }
     
@@ -109,5 +114,5 @@ class ConversionViewController: UIViewController {
 //            }
 //        }
 //    }
-}
+
 

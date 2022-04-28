@@ -16,8 +16,6 @@ class ListViewController: UIViewController {
     var imagePickerController = UIImagePickerController()
     var upload: Upload!
     var uploads: Uploads!
-    var photo: Photo!
-    var photos: Photos!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +26,7 @@ class ListViewController: UIViewController {
         if upload == nil {
             upload = Upload()
         }
-        photos = Photos()
+        uploads = Uploads()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +35,7 @@ class ListViewController: UIViewController {
         uploads.loadData {
             self.tableView.reloadData()
         }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -44,11 +43,13 @@ class ListViewController: UIViewController {
         case "AddImage":
             let navigationController = segue.destination as! UINavigationController
             let destination = navigationController.viewControllers.first as! ConversionViewController
-            destination.photo = self.photo
+            destination.upload = self.upload
+            
         case "ShowImageAndText":
             let destination = segue.destination as! ConversionViewController
             let selectedIndexPath = tableView.indexPathForSelectedRow!
             destination.upload = uploads.uploadArray[selectedIndexPath.row]
+            print(uploads.uploadArray.count)
         default:
             print("Could not find a segue for that identifier")
         }
@@ -98,12 +99,12 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 extension ListViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        photo = Photo()
+        upload = Upload()
         
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            photo.image = editedImage
+            upload.image = editedImage
         } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            photo.image = originalImage
+            upload.image = originalImage
         }
         dismiss(animated: true) {
             self.performSegue(withIdentifier: "AddImage", sender: nil)

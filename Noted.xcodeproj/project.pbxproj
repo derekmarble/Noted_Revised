@@ -22,8 +22,6 @@
 		8559C21B2819CC8A00AB7DE6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C21A2819CC8A00AB7DE6 /* LoginViewController.swift */; };
 		8559C21D2819CD7F00AB7DE6 /* NotedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C21C2819CD7F00AB7DE6 /* NotedUser.swift */; };
 		8559C21F2819E06700AB7DE6 /* Uploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C21E2819E06700AB7DE6 /* Uploads.swift */; };
-		8559C2212819ED3E00AB7DE6 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C2202819ED3E00AB7DE6 /* Photo.swift */; };
-		8559C2232819EFAB00AB7DE6 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C2222819EFAB00AB7DE6 /* Photos.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,8 +43,6 @@
 		8559C21A2819CC8A00AB7DE6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8559C21C2819CD7F00AB7DE6 /* NotedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotedUser.swift; sourceTree = "<group>"; };
 		8559C21E2819E06700AB7DE6 /* Uploads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uploads.swift; sourceTree = "<group>"; };
-		8559C2202819ED3E00AB7DE6 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
-		8559C2222819EFAB00AB7DE6 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		FEF357FC988EFC834473C087 /* Pods-Noted.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noted.debug.xcconfig"; path = "Target Support Files/Pods-Noted/Pods-Noted.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,8 +83,6 @@
 				8559C1AF281720C100AB7DE6 /* SceneDelegate.swift */,
 				8559C2182819BD9D00AB7DE6 /* Upload.swift */,
 				8559C21E2819E06700AB7DE6 /* Uploads.swift */,
-				8559C2202819ED3E00AB7DE6 /* Photo.swift */,
-				8559C2222819EFAB00AB7DE6 /* Photos.swift */,
 				8559C21C2819CD7F00AB7DE6 /* NotedUser.swift */,
 				8559C21A2819CC8A00AB7DE6 /* LoginViewController.swift */,
 				8559C1B1281720C100AB7DE6 /* ListViewController.swift */,
@@ -259,7 +253,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8559C2232819EFAB00AB7DE6 /* Photos.swift in Sources */,
 				8559C21F2819E06700AB7DE6 /* Uploads.swift in Sources */,
 				8559C2192819BD9D00AB7DE6 /* Upload.swift in Sources */,
 				8559C1B2281720C100AB7DE6 /* ListViewController.swift in Sources */,
@@ -267,7 +260,6 @@
 				8559C1C2281721A200AB7DE6 /* UploadTableViewCell.swift in Sources */,
 				8559C21D2819CD7F00AB7DE6 /* NotedUser.swift in Sources */,
 				8559C21B2819CC8A00AB7DE6 /* LoginViewController.swift in Sources */,
-				8559C2212819ED3E00AB7DE6 /* Photo.swift in Sources */,
 				8559C20A2817757D00AB7DE6 /* UIViewController+alert.swift in Sources */,
 				8559C1AE281720C100AB7DE6 /* AppDelegate.swift in Sources */,
 				8559C1B0281720C100AB7DE6 /* SceneDelegate.swift in Sources */,
