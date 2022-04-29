@@ -23,6 +23,11 @@ class ConversionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //hide keyboard if we tap out of a field
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+        
         if upload == nil {
             upload = Upload()
         }
@@ -36,12 +41,16 @@ class ConversionViewController: UIViewController {
     func updateUserInterface() {
         fileNameTextField.text = upload.titleOrDescription
         imageView.image = upload.image
-        recognizeText(imageWithText: imageView.image)
+        if upload.photoID == "" {
+            recognizeText(imageWithText: imageView.image)
+        }
+        recognizedTextView.text = upload.extractedText
     }
     
     func updateFromUserInterface() {
         upload.titleOrDescription = fileNameTextField.text ?? ""
         upload.image = imageView.image!
+        upload.extractedText = recognizedTextView.text
        
     }
     
@@ -101,24 +110,6 @@ class ConversionViewController: UIViewController {
         }
         
     }
-    
-    
-//    func convert(imageWithText: UIImage) {
-//        guard let cgImage = imageWithText.cgImage else {return}
-//        // creating request with cgImage
-//        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-//        let request = VNRecognizeTextRequest { request, error in
-//            guard let observations = (request.results ?? [VNObservation()]) as? [VNRecognizedTextObservation], error == nil else {return}
-//            let text = observations.compactMap({$0.topCandidates(1).first?.string}).joined(separator: ", ")
-//            print(text) // text we get from image
-//        }
-//        request.recognitionLevel = VNRequestTextRecognitionLevel.accurate
-//        do {
-//            try handler.perform([request])
-//        } catch {
-//            print("Error performing request")
-//        }
-//    }
 }
     
 
