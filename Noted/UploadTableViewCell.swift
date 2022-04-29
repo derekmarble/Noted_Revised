@@ -7,6 +7,13 @@
 
 import UIKit
 
+private let dateFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .medium
+    dateFormatter.timeStyle = .none
+    return dateFormatter
+} ()
+
 class UploadTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     
@@ -15,6 +22,7 @@ class UploadTableViewCell: UITableViewCell {
     var upload: Upload! {
         didSet {
             descriptionLabel.text = upload.titleOrDescription
+            dateUploadedLabel.text = "\(dateFormatter.string(from: upload.date))"
         }
     }
 

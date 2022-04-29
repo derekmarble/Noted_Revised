@@ -22,6 +22,7 @@
 		8559C21B2819CC8A00AB7DE6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C21A2819CC8A00AB7DE6 /* LoginViewController.swift */; };
 		8559C21D2819CD7F00AB7DE6 /* NotedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C21C2819CD7F00AB7DE6 /* NotedUser.swift */; };
 		8559C21F2819E06700AB7DE6 /* Uploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C21E2819E06700AB7DE6 /* Uploads.swift */; };
+		8559C225281C972F00AB7DE6 /* UIBarButtonItem+hide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8559C224281C972E00AB7DE6 /* UIBarButtonItem+hide.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		8559C21A2819CC8A00AB7DE6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8559C21C2819CD7F00AB7DE6 /* NotedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotedUser.swift; sourceTree = "<group>"; };
 		8559C21E2819E06700AB7DE6 /* Uploads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uploads.swift; sourceTree = "<group>"; };
+		8559C224281C972E00AB7DE6 /* UIBarButtonItem+hide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+hide.swift"; sourceTree = "<group>"; };
 		FEF357FC988EFC834473C087 /* Pods-Noted.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Noted.debug.xcconfig"; path = "Target Support Files/Pods-Noted/Pods-Noted.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 				8559C1C32817264E00AB7DE6 /* ConversionViewController.swift */,
 				8559C1C1281721A200AB7DE6 /* UploadTableViewCell.swift */,
 				8559C2092817757D00AB7DE6 /* UIViewController+alert.swift */,
+				8559C224281C972E00AB7DE6 /* UIBarButtonItem+hide.swift */,
 				8559C1B3281720C100AB7DE6 /* Main.storyboard */,
 				8559C1B6281720C300AB7DE6 /* Assets.xcassets */,
 				8559C1B8281720C300AB7DE6 /* LaunchScreen.storyboard */,
@@ -254,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8559C21F2819E06700AB7DE6 /* Uploads.swift in Sources */,
+				8559C225281C972F00AB7DE6 /* UIBarButtonItem+hide.swift in Sources */,
 				8559C2192819BD9D00AB7DE6 /* Upload.swift in Sources */,
 				8559C1B2281720C100AB7DE6 /* ListViewController.swift in Sources */,
 				8559C1C42817264E00AB7DE6 /* ConversionViewController.swift in Sources */,

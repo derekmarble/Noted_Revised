@@ -10,10 +10,18 @@ import MLKit
 import AVKit
 import Vision
 
+private let dateFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .medium
+    dateFormatter.timeStyle = .none
+    return dateFormatter
+} ()
+
 class ConversionViewController: UIViewController {
     
     @IBOutlet weak var fileNameTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var shareBarButton: UIBarButtonItem!
     
     @IBOutlet weak var recognizedTextView: UITextView!
     
@@ -43,6 +51,7 @@ class ConversionViewController: UIViewController {
         imageView.image = upload.image
         if upload.photoID == "" {
             recognizeText(imageWithText: imageView.image)
+            shareBarButton.hide()
         }
         recognizedTextView.text = upload.extractedText
     }
@@ -82,6 +91,12 @@ class ConversionViewController: UIViewController {
             }
         }
         }
+    
+    @IBAction func shareButtonPressed(_ sender: UIBarButtonItem) {
+        let activityVC = UIActivityViewController(activityItems: [upload.extractedText], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        self.present(activityVC, animated: true, completion: nil)
+    }
     func recognizeText(imageWithText: UIImage?) {
         guard let cgImage = imageWithText?.cgImage else {return}
         
