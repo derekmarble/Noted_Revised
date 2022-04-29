@@ -8,6 +8,7 @@
 import UIKit
 import MLKit
 import AVKit
+import Vision
 
 class ConversionViewController: UIViewController {
     
@@ -35,12 +36,13 @@ class ConversionViewController: UIViewController {
     func updateUserInterface() {
         fileNameTextField.text = upload.titleOrDescription
         imageView.image = upload.image
-
+        recognizeText(imageWithText: imageView.image)
     }
     
     func updateFromUserInterface() {
         upload.titleOrDescription = fileNameTextField.text ?? ""
         upload.image = imageView.image!
+       
     }
     
     func leaveViewController() {
@@ -71,51 +73,52 @@ class ConversionViewController: UIViewController {
             }
         }
         }
+    func recognizeText(imageWithText: UIImage?) {
+        guard let cgImage = imageWithText?.cgImage else {return}
+        
+        //handle
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        //request
+        let request = VNRecognizeTextRequest { request, error in
+            guard let observations = request.results as? [VNRecognizedTextObservation], error == nil else {
+                return
+            }
+            let text = observations.compactMap({
+                $0.topCandidates(1).first?.string //getting the top candidate for the recognized text
+            }).joined(separator: ", ")
+            //text is now an array for recognized strings (this is what the compact map does)
+            print(text)
+            DispatchQueue.main.async {
+                self.recognizedTextView.text = text
+            }
+        }
+        
+        //process the request if possible
+        do {
+            try handler.perform([request])
+        } catch {
+            print("Error processing the request: \(error.localizedDescription)")
+        }
+        
     }
     
-
-//    func imageOrientation( deviceOrientation: UIDeviceOrientation, cameraPosition: AVCaptureDevice.Position) -> UIImage.Orientation {
-//      switch deviceOrientation {
-//      case .portrait:
-//        return cameraPosition == .front ? .leftMirrored : .right
-//      case .landscapeLeft:
-//        return cameraPosition == .front ? .downMirrored : .up
-//      case .portraitUpsideDown:
-//        return cameraPosition == .front ? .rightMirrored : .left
-//      case .landscapeRight:
-//        return cameraPosition == .front ? .upMirrored : .down
-//      case .faceDown, .faceUp, .unknown:
-//        return .up
-//      }
-//    }
-//
-//    func processImageAndExtractText(image: UIImage) {
-//        let textRecognizer = TextRecognizer.textRecognizer()
-//        let visionImage = VisionImage(image: image)
-//        textRecognizer.process(visionImage) { result, error in
-//          guard error == nil, let result = result else {
-//            // Error handling
-//            return
-//          }
-//            let resultText = result.text
-//            for block in result.blocks {
-//                let blockText = block.text
-//                let blockLanguages = block.recognizedLanguages
-//                let blockCornerPoints = block.cornerPoints
-//                let blockFrame = block.frame
-//                for line in block.lines {
-//                    let lineText = line.text
-//                    let lineLanguages = line.recognizedLanguages
-//                    let lineCornerPoints = line.cornerPoints
-//                    let lineFrame = line.frame
-//                    for element in line.elements {
-//                        let elementText = element.text
-//                        let elementCornerPoints = element.cornerPoints
-//                        let elementFrame = element.frame
-//                    }
-//                }
-//            }
+    
+//    func convert(imageWithText: UIImage) {
+//        guard let cgImage = imageWithText.cgImage else {return}
+//        // creating request with cgImage
+//        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+//        let request = VNRecognizeTextRequest { request, error in
+//            guard let observations = (request.results ?? [VNObservation()]) as? [VNRecognizedTextObservation], error == nil else {return}
+//            let text = observations.compactMap({$0.topCandidates(1).first?.string}).joined(separator: ", ")
+//            print(text) // text we get from image
+//        }
+//        request.recognitionLevel = VNRequestTextRecognitionLevel.accurate
+//        do {
+//            try handler.perform([request])
+//        } catch {
+//            print("Error performing request")
 //        }
 //    }
-
+}
+    
 
