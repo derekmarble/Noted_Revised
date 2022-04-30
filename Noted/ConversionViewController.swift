@@ -22,6 +22,7 @@ class ConversionViewController: UIViewController {
     @IBOutlet weak var fileNameTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var shareBarButton: UIBarButtonItem!
+    @IBOutlet weak var deleteBarButton: UIBarButtonItem!
     
     @IBOutlet weak var recognizedTextView: UITextView!
     
@@ -52,6 +53,8 @@ class ConversionViewController: UIViewController {
         if upload.photoID == "" {
             recognizeText(imageWithText: imageView.image)
             shareBarButton.hide()
+            deleteBarButton.hide()
+            
         }
         recognizedTextView.text = upload.extractedText
     }
@@ -73,6 +76,15 @@ class ConversionViewController: UIViewController {
     }
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         leaveViewController()
+    }
+    @IBAction func deleteButtonPressed(_ sender: UIBarButtonItem) {
+        upload.deleteData { success in
+            if success {
+                self.leaveViewController()
+            } else {
+                print("Delete Unsuccessful")
+            }
+        }
     }
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         updateFromUserInterface()

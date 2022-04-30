@@ -130,7 +130,7 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Recognized text will appear in this field. Gonna be legit!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XDh-kG-jKh">
-                                <rect key="frame" x="8" y="560" width="398" height="292"/>
+                                <rect key="frame" x="8" y="560" width="398" height="243"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -154,6 +154,14 @@
                             <constraint firstItem="0KB-IF-yBs" firstAttribute="leading" secondItem="snE-rM-bVb" secondAttribute="leading" constant="8" id="djW-xK-u3K"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="dpq-bm-s7C"/>
+                        <barButtonItem title="Item" image="trash" catalog="system" id="VpJ-oC-c7c">
+                            <connections>
+                                <action selector="deleteButtonPressed:" destination="kyl-xM-fF4" id="1aO-4i-9Mm"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="Olp-4u-G5K">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="G5f-tL-aVp">
                             <connections>
@@ -173,7 +181,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="deleteBarButton" destination="VpJ-oC-c7c" id="vG8-Nf-Xji"/>
                         <outlet property="fileNameTextField" destination="0KB-IF-yBs" id="aEW-Rs-xAQ"/>
                         <outlet property="imageView" destination="pMa-YZ-uZl" id="K9x-rh-kOO"/>
                         <outlet property="recognizedTextView" destination="XDh-kG-jKh" id="aJ9-Qg-xKt"/>
@@ -246,6 +256,7 @@
     <resources>
         <image name="doc.text.image" catalog="system" width="115" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

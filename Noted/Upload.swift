@@ -172,19 +172,18 @@ class Upload {
         }
         
     }
-//    func deleteData(completion: @escaping(Bool) -> ()) {
-//        let db = Firestore.firestore()
-//        db.collection("uploads").document(self.documentID).delete { error in
-//            if let error = error {
-//                print("Error deleting photo document ID \(self.documentID). Error: \(error.localizedDescription)")
-//                completion(false)
-//            } else {
-//                self.deleteImage()
-//                print("Successfully deleted document \(self.documentID)")
-//                    completion(true)
-//            }
-//        }
-//    }
+    func deleteData(completion: @escaping(Bool) -> ()) {
+        let db = Firestore.firestore()
+        db.collection("uploads").document(self.documentID).delete { error in
+            if let error = error {
+                print("Error deleting photo document ID \(self.documentID). Error: \(error.localizedDescription)")
+                completion(false)
+            } else {
+                print("Successfully deleted document \(self.documentID)")
+                    completion(true)
+            }
+        }
+    }
 //
 //    private func deleteImage() {
 //        guard self.documentID != "" else {
