@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
                 if success {
                     self.performSegue(withIdentifier: "FirstShowSegue", sender: nil)
                 } else {
-                    print("Error: tried to save a new snack user but failed")
+                    print("Error: tried to save a new user but failed")
                 }
             }
             

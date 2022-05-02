@@ -93,6 +93,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.upload = uploads.uploadArray[indexPath.row]
         return cell
     }
+    
 }
 
 extension ListViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
